@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Dropdown from "./Dropdown";
 
 function App() {
+  const [isShow, setIsShow] = useState(false);
+  const [selected, setSelected] = useState("Selected");
+  const dropdownOptions = ["Yes", "Probably No", "I don't know"];
+
+  const handleMouseEnter = () => {
+    setIsShow(true);
+  };
+
+  const handleOnClick = (item) => {
+    setSelected(item);
+    setIsShow(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Dropdown
+      items={dropdownOptions}
+      handleOnClick={handleOnClick}
+      handleMouseEnter={handleMouseEnter}
+      isShow={isShow}
+    />
   );
 }
 
